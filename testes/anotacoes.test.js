@@ -15,7 +15,6 @@ describe("Testando a Anotações", ()=> {
         })
     });
 
-
     test('Adicionar anotação.', () => {
         const newAnotacao = {
             titulo: "Uma nova anotacao",
@@ -31,6 +30,26 @@ describe("Testando a Anotações", ()=> {
 
     });
 
+    test('Buscar todas as anotacoes', ()=> {
+        const newAnotacao = {
+            titulo: "Uma nova anotacao",
+            conteudo: "Um conteudo qualquer"
+        }
+        new anotacao(newAnotacao).save().then(()=>{
+            console.log("Anotação salva com sucesso")
+        }).catch((err)=>{
+            console.log("Erro ao salvar anotação")
+        })
+
+        const result = anotacao.find().then((anotacoes)=>{
+            console.log('Encontrados!');
+        }).catch((err)=>{
+            console.log("error")
+        })
+
+        expect(result).toEqual(expect.objectContaining(result));
+    })
+
     test('Excluir anotação', () => {
         const id = 'bh1b2h1hqwh1bhb';
         const result = anotacao.remove({_id: id}).then(()=>{
@@ -44,8 +63,18 @@ describe("Testando a Anotações", ()=> {
     })
 
     test('Buscar Anotação', async() => {
-        const busca = 'exemplo';
 
+        const newAnotacao = {
+            titulo: "Exemplo anotacao",
+            conteudo: "Um conteudo qualquer"
+        }
+        new anotacao(newAnotacao).save().then(()=>{
+            console.log("Anotação salva com sucesso")
+        }).catch((err)=>{
+            console.log("Erro ao salvar anotação")
+        })
+
+        const busca = 'exemplo';
         const result = await anotacao.find( 
             {$text: { $search: busca}}, 
             {score: { $meta: "textScore" }}
