@@ -34,11 +34,11 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         await request(app)
         .post('/admin/anotacoes/edit')
         .send({
-            id: '63eb427abf01bdb3e2f42072',
+            id: '63eb499b379b8659818968de',
             titulo: 'JEST JEST',
             conteudo: 'JEST JEST JEST JEST'
         })
-        ///sem funcionar
+
     })
 
     it.skip('tentando apagar anotação', async ()=>{
@@ -101,10 +101,11 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it.skip('anotação vazia', async ()=>{
+    it('anotação vazia', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
+
         })
         .expect(302)
         
@@ -122,15 +123,61 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it('criar nova anotação com titulo.lenght > 10', async ()=>{
+    it.skip('criar nova anotação com titulo.lenght  < 20', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
-            titulo: 'Testando JEST',
+            titulo: 'Testando JESTeeeeeeee',
             conteudo: 'Testando JEST'
         })
         
         
+    })
+
+    it.skip('criar nova anotação com caracteres especiais', async ()=>{
+        const anotacao = await request(app)
+        .post('/admin/anotacoes/new')
+        .send({
+            titulo: 'T&$t@ndo',
+            conteudo: 'T&$t@ndo JEST'
+        })
+        
+        
+    })
+
+    it.skip('Editar uma anotação mudando apenas o conteúdo', async ()=>{
+
+        await request(app)
+        .post('/admin/anotacoes/edit')
+        .send({
+            id: '63eb499e379b8659818968e1',
+            titulo: 'teste2',
+            conteudo: 'JEST JEST JEST JEST'
+        })
+
+    })
+
+    it.skip('Editar uma anotação mudando apenas o titulo', async ()=>{
+
+        await request(app)
+        .post('/admin/anotacoes/edit')
+        .send({
+            id: '63eb49a2379b8659818968e4',
+            titulo: 'JEST JEST JEST JEST',
+            conteudo: 'teste3'
+        })
+
+    })
+
+    it.skip('Pesquisar anotação por titulo e conteudo inexistente', async ()=>{
+        await request(app)
+        .post('/admin/anotacoes/buscaTextual')
+        .send({
+            query: 'TITULO INEXISTENTE'
+        }).then(res=>{
+            console.log(res)
+        })
+
     })
 
 })

@@ -1,6 +1,5 @@
 const Anotacao = require('../models/Anotacao')
 const mongoose = require('mongoose');
-const { all } = require('../server');
 anotacao = mongoose.model('notas')
 
 exports.Mostrar = async(req, res)=>{
@@ -18,13 +17,28 @@ exports.AdicionarNota = async(req, res)=>{
         conteudo: req.body.conteudo
     }
 
-    new anotacao(newAnotacao).save().then(()=>{
-        res.redirect('/admin/anotacoes')
-        console.log("Anotação salva com sucesso")
-    }).catch((err)=>{
-        console.log("Erro ao salvar anotação")
-    })
+    if(newAnotacao.titulo != null && newAnotacao.conteudo != null){
+        if(newAnotacao.titulo.length < 20){
+            new anotacao(newAnotacao).save().then(()=>{
+                res.redirect('/admin/anotacoes')
+                console.log("Anotação salva com sucesso")
+            }).catch((err)=>{
+                console.log("Erro ao salvar anotação")
+            })
+        }else{
+            console.log("comprimento maior que 20 caracteres")
+            res.redirect("/admin/anotacoes")
+        }
+    }else{
+        console.log("Error, titulo e conteudo nulo")
+        res.redirect("/admin/anotacoes")
+    }
+    
 }
+
+
+
+
 
 exports.GetIDNota = async(req, res)=>{
     anotacao.findOne({_id: req.params.id}).then((anotacao)=>{
@@ -66,6 +80,9 @@ exports.DeletarNota = async(req, res)=>{
 exports.apagarTudo = async(req, res)=>{
     anotacao.remove({}).then(()=>{
         console.log("removido com sucesso!")
+        res.redirect('/admin/anotacoes')
+    }).catch((err)=>{
+        console.log("erro ao remover")
         res.redirect('/admin/anotacoes')
     })
 }
