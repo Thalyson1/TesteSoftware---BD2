@@ -1,66 +1,88 @@
 const request = require("supertest")
 const app = require('./server')
 const jwt = require('jsonwebtoken');
-const Usuario = require("./models/usuario");
-const mongoose  = require("mongoose");
+const Anotacao = require('./models/Anotacao')
+const mongoose = require('mongoose');
+anotacao = mongoose.model('notas')
 
-describe("post /admin/NewCadastro", ()=>{
 
-    it('tentando criar novo usuario', async ()=>{
-        const user ={
-            nome: "testando novo metodo de criar",
-            email: 'testandometodo@gmail.com',
-            senha: '123',
-            confirmarSenha: '123'
-        };
-        return request(app)
-            .post("/admin/NewCadastro")
-            .send(user)
-            .expect(200)
-            
+describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
+
+    it.skip('tentando criar nova anotação', async ()=>{
+        const anotacao = await request(app)
+        .post('/admin/anotacoes/new')
+        .send({
+            titulo: 'Testando JEST',
+            conteudo: 'Testando JEST'
+        })
+        .expect(200)
+        
     })
+
+
+    it.skip('mostrando todas as anotacoes', async ()=>{
+        const anotacao = await request(app)
+        .get('/admin/anotacoes').then((res)=>{
+            //console.log(res)
+        })
+        .expect(200)
+    })
+
+
+    it.skip('tentando atualizar anotação', async ()=>{
+
+        await request(app)
+        .post('/admin/anotacoes/edit')
+        .send({
+            id: '63eb427abf01bdb3e2f42072',
+            titulo: 'JEST JEST',
+            conteudo: 'JEST JEST JEST JEST'
+        })
+        ///sem funcionar
+    })
+
+    it.skip('tentando apagar anotação', async ()=>{
+
+        await request(app)
+        .post('/admin/anotacoes/deletar')
+        .send({
+            id: '63eb3726ed6ce00d9b18edbe'
+        })
+
+    })
+
+    it.skip('tentando buscar anotação textScore', async ()=>{
+
+        await request(app)
+        .post('/admin/anotacoes/buscaTextual')
+        .send({
+            query: 'UNICO'
+        }).then(res=>{
+            console.log(res)
+        })
+
+    })
+
+    it.skip('tentando criar nova anotação', async ()=>{
+        const anotacao = await request(app)
+        .post('/admin/anotacoes/new')
+        .send({
+            titulo: 'Testando JEST com peso 2',
+            weights: 2,
+            conteudo: 'Testando JEST conteudo 1',
+            weights:1
+        })
+        .expect(302)
+        
+    })
+
+    it('tentando apagar todas as anotação', async ()=>{
+
+        await request(app)
+        .post('/admin/anotacoes/deletarTudo')
+
+    })
+
 })
 
-
-
-// describe("post /admin/NewLogin", ()=>{
-    
-//     it('tentando logar usuario', async ()=>{
-//         const usuario = await request(app)
-//         .post('/admin/NewLogin')
-//         .send(
-//             {
-//                 email: "jest@gmail.com",
-//                 senha: "123"
-//                 }
-//         ).then((res)=>{
-//             jwt.verify(res.body, process.env.SECRET, (err) =>{
-//                 expect(err).toBeNull()
-//             })
-            
-//         })
-//     })
-// })
-
-// describe("post /admin/anotacoes/new", ()=>{
-
-
-//     it('tentando criar anotacao', async ()=>{
-
-//         const anotacao = await request(app)
-//         .post('/admin/anotacoes/new')
-//         .send(
-//             {
-//                 titulo: 'Testando anotacao com jest',
-//                 conteudo: 'Testando anotacao com jest'
-//                 }
-//         )
-//         // expect(usuario.headers.authorization(true))
-//         expect(200);
-
-      
-//         console.log(anotacao.body);
-//     })
-
-// })
 

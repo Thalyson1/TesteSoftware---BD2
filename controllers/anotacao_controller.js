@@ -1,5 +1,6 @@
 const Anotacao = require('../models/Anotacao')
 const mongoose = require('mongoose');
+const { all } = require('../server');
 anotacao = mongoose.model('notas')
 
 exports.Mostrar = async(req, res)=>{
@@ -73,4 +74,17 @@ exports.BuscarNota = async(req, res)=>{
         console.log("error") 
         res.redirect('/admin')
     })
+
+
+exports.DeletarTodasNotas = async(req, res)=>{
+    anotacao.remove({_id: req.body.id}).then(()=>{
+        console.log("removido com sucesso!")
+        res.redirect('/admin/anotacoes')
+    }).catch((err)=>{
+        console.log("erro ao remover")
+        res.redirect('/admin/anotacoes')
+    })
+}
+
+
 }
