@@ -3,13 +3,11 @@ const Schema = mongoose.Schema
 
 const anotacao = new Schema({
     titulo: {
-        type: String, 
-        required: true,
+        type: String,
         weights: 2
     },
     conteudo:{
         type: String,
-        required: true,
         weights: 1
     },
     
