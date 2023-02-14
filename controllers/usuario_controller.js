@@ -64,7 +64,7 @@ exports.logarUsuario =async(req, res)=>{
             res.set('Authorization', tokenBearer);
             res.redirect('/admin/anotacoes');
         } else {
-            res.redirect('/admin/login')
+            res.redirect('/admin/anotacoes')
         }
 };
 
