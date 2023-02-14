@@ -18,7 +18,7 @@ exports.AdicionarNota = async(req, res)=>{
     }
 
     if(newAnotacao.titulo != null && newAnotacao.conteudo != null){
-        if(newAnotacao.titulo.length < 20){
+        if(newAnotacao.titulo.length < 20 && newAnotacao.conteudo.length < 50){
             new anotacao(newAnotacao).save().then(()=>{
                 res.redirect('/admin/anotacoes')
                 console.log("Anotação salva com sucesso")
@@ -26,7 +26,7 @@ exports.AdicionarNota = async(req, res)=>{
                 console.log("Erro ao salvar anotação")
             })
         }else{
-            console.log("comprimento maior que 20 caracteres")
+            console.log("Error, comprimentos inválidos")
             res.redirect("/admin/anotacoes")
         }
     }else{
@@ -93,7 +93,14 @@ exports.BuscarNota = async(req, res)=>{
         {score: { $meta: "textScore" }}
         )
         .sort({ score : { $meta : 'textScore' } }).then((anotacoes)=>{
-        res.render("admin/anotacoes", {anotacoes: anotacoes})
+        if(anotacoes.length > 0){
+            console.log('anotacoes existentes',anotacoes)
+            res.render("admin/anotacoes", {anotacoes: anotacoes})
+        }else{
+            console.log("Erro, sem anotacoes existentes", anotacoes)
+            res.redirect('/admin/anotacoes')
+        }
+        
     }).catch((err)=>{
         console.log("error") 
         res.redirect('/admin')
