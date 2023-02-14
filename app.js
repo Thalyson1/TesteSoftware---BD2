@@ -7,6 +7,11 @@ const admin = require("./routes/admin")
 const path = require ('path')
 const dotenv = require("dotenv")
 const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo');
+const session = require('express-session')
+const cookieParser = require('cookie-parser');
+
+
 dotenv.config()
 
 
@@ -25,6 +30,18 @@ dotenv.config()
     }))
     app.set('view engine', 'handlebars')
 
+    //SESSIONS 
+    const sessionOptions = session({
+        secret: process.env.SECRET,
+        store: MongoStore.create({ mongoUrl: process.env.MONGO_URL}),
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 7,
+            httpOnly: true
+        }
+    });
+
     //CONECTANDO NO BANCO
 
         mongoose.Promise = global.Promise
@@ -40,7 +57,11 @@ dotenv.config()
 
 
 //ROTAS
+app.use(sessionOptions);
+app.use(cookieParser());
 app.use('/admin', admin)
+
+
 
 
 //Outer
