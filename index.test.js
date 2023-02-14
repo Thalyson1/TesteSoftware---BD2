@@ -63,7 +63,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('tentando criar nova anotação', async ()=>{
+    it.skip('tentando criar index', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -76,11 +76,61 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it('tentando apagar todas as anotação', async ()=>{
+    it.skip('tentando apagar todas as anotação', async ()=>{
 
         await request(app)
-        .post('/admin/anotacoes/deletarTudo')
+        .post('/admin/anotacoes/deletarTUDO')
+    })
 
+    it.skip('anotação sem o campo titulo', async ()=>{
+        const anotacao = await request(app)
+        .post('/admin/anotacoes/new')
+        .send({
+            conteudo: 'Testando JEST SEM TITULO'
+        })
+        .expect(302)
+        
+    })
+    it.skip('anotação sem o campo conteudo', async ()=>{
+        const anotacao = await request(app)
+        .post('/admin/anotacoes/new')
+        .send({
+            titulo: 'Testando JEST SEM CONTEUDO'
+        })
+        .expect(302)
+        
+    })
+
+    it.skip('anotação vazia', async ()=>{
+        const anotacao = await request(app)
+        .post('/admin/anotacoes/new')
+        .send({
+        })
+        .expect(302)
+        
+    })
+
+    it.skip('campo de busca vazio', async ()=>{
+
+        await request(app)
+        .post('/admin/anotacoes/buscaTextual')
+        .send({
+            query: ''
+        }).then(res=>{
+            console.log(res)
+        })
+
+    })
+
+    it('criar nova anotação com titulo.lenght > 10', async ()=>{
+        const anotacao = await request(app)
+        .post('/admin/anotacoes/new')
+        .send({
+            titulo: 'Testando JEST',
+            conteudo: 'Testando JEST'
+        })
+        
+        
     })
 
 })

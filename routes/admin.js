@@ -48,7 +48,8 @@ router.post("/anotacoes/edit", anotacao_controller.EditandoNota)
 //ROTA PARA DELETAR
 router.post('/anotacoes/deletar', anotacao_controller.DeletarNota)
 
-router.post('/anotacoes/deletarTudo', anotacao_controller.DeletarTodasNotas)
+router.post('/anotacoes/deletarTUDO', anotacao_controller.apagarTudo)
+
 
 
 //ROTA PARA BUSCA TEXTUAL

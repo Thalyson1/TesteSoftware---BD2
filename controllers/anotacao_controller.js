@@ -63,6 +63,13 @@ exports.DeletarNota = async(req, res)=>{
     })
 }
 
+exports.apagarTudo = async(req, res)=>{
+    anotacao.remove({}).then(()=>{
+        console.log("removido com sucesso!")
+        res.redirect('/admin/anotacoes')
+    })
+}
+
 exports.BuscarNota = async(req, res)=>{
     const cursor = await anotacao.find( 
         {$text: { $search: req.body.query}}, 
@@ -76,15 +83,6 @@ exports.BuscarNota = async(req, res)=>{
     })
 
 
-exports.DeletarTodasNotas = async(req, res)=>{
-    anotacao.remove({_id: req.body.id}).then(()=>{
-        console.log("removido com sucesso!")
-        res.redirect('/admin/anotacoes')
-    }).catch((err)=>{
-        console.log("erro ao remover")
-        res.redirect('/admin/anotacoes')
-    })
-}
 
 
 }
