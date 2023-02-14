@@ -21,6 +21,7 @@ exports.checkToken = async(req, res, next)=>{
     }
     }else{
       req.session.user = null
+      res.clearCookie('access_token');
       console.log('Acesso negado, necessário realizar login')
       return res.redirect('/admin/login')
 }
