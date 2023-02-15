@@ -11,8 +11,8 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
-            titulo: 'Testando JEST',
-            conteudo: 'Testando JEST'
+            titulo: 'Testando JESTeeeee',
+            conteudo: 'Testando JESTeeee'
         })
         
     })

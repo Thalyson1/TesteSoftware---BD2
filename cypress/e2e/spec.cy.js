@@ -42,14 +42,6 @@ describe('My First Test', () => {
 		cy.get('h5').contains('Testes')
 	})
 
-	it('Deletar anotação', () => {
-		cy.visit('http://localhost:3000/admin/anotacoes')
-
-		cy.get('.bi-file-earmark-x-fill').click()
-
-		cy.get('.card-body').should('not.exist')
-	})
-
 	it('Campo de busca vazio', () => {
 		cy.visit('http://localhost:3000/admin/anotacoes')
 
@@ -59,4 +51,12 @@ describe('My First Test', () => {
 		cy.get('.card-body').should('not.exist')
 	})
 
+
+	it('Deletar anotação', () => {
+		cy.visit('http://localhost:3000/admin/anotacoes')
+
+		cy.get('.bi-file-earmark-x-fill').click()
+
+		cy.get('.card-body').should('not.exist')
+	})
 })
