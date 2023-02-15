@@ -51,6 +51,7 @@ describe('My First Test', () => {
 		cy.get('.card-body').should('not.exist')
 	})
 
+
 	it('Deletar anotação', () => {
 		cy.visit('http://localhost:3000/admin/anotacoes')
 

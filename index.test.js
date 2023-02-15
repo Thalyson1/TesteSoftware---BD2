@@ -18,14 +18,14 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
     })
 
 
-    it.skip('mostrando todas as anotacoes', async ()=>{
+    it('mostrando todas as anotacoes', async ()=>{
         const anotacao = await request(app)
         .get('/admin/anotacoes').then((res)=>{
             //console.log(res)
         })
     })
 
-    it.skip('tentando atualizar anotação', async ()=>{
+    it('tentando atualizar anotação', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/edit')
@@ -37,7 +37,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('tentando apagar anotação', async ()=>{
+    it('tentando apagar anotação', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/deletar')
@@ -47,7 +47,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('tentando buscar anotação textScore', async ()=>{
+    it('tentando buscar anotação textScore', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/buscaTextual')
@@ -57,7 +57,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('Falha busca textual', async ()=>{
+    it('Falha busca textual', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/buscaTextual')
@@ -67,7 +67,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('tentando criar index', async ()=>{
+    it('tentando criar index', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -80,13 +80,13 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it.skip('tentando apagar todas as anotação', async ()=>{
+    it('tentando apagar todas as anotação', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/deletarTUDO')
     })
 
-    it.skip('anotação sem o campo titulo', async ()=>{
+    it('anotação sem o campo titulo', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -95,7 +95,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         .expect(302)
         
     })
-    it.skip('anotação sem o campo conteudo', async ()=>{
+    it('anotação sem o campo conteudo', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -105,7 +105,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it.skip('anotação vazia', async ()=>{
+    it('anotação vazia', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -115,7 +115,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it.skip('campo de busca vazio', async ()=>{
+    it('campo de busca vazio', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/buscaTextual')
@@ -127,7 +127,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('criar nova anotação com titulo.lenght  < 20', async ()=>{
+    it('criar nova anotação com titulo.lenght  < 20', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -138,7 +138,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it.skip('criar nova anotação com caracteres especiais', async ()=>{
+    it('criar nova anotação com caracteres especiais', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -149,7 +149,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it.skip('Editar uma anotação mudando apenas o conteúdo', async ()=>{
+    it('Editar uma anotação mudando apenas o conteúdo', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/edit')
@@ -161,7 +161,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('Editar uma anotação mudando apenas o titulo', async ()=>{
+    it('Editar uma anotação mudando apenas o titulo', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/edit')
@@ -173,7 +173,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('Pesquisar anotação por titulo e conteudo inexistente', async ()=>{
+    it('Pesquisar anotação por titulo e conteudo inexistente', async ()=>{
         await request(app)
         .post('/admin/anotacoes/buscaTextual')
         .send({
@@ -184,7 +184,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
 
     })
 
-    it.skip('mostrando todas as anotacoes em ordem alfabetica', async ()=>{
+    it('mostrando todas as anotacoes em ordem alfabetica', async ()=>{
         const anotacao = await request(app)
         .get('/admin/anotacoes').then((res)=>{
             //console.log(res)
@@ -192,7 +192,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         .expect(200)
     })
 
-    it.skip('criar nova anotação com conteudo.lenght  < 50', async ()=>{
+    it('criar nova anotação com conteudo.lenght  < 50', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -203,7 +203,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it.skip('Adicionar anotão com mesmo título de uma nota existente', async ()=>{
+    it('Adicionar anotão com mesmo título de uma nota existente', async ()=>{
         const anotacao = await request(app)
         .post('/admin/anotacoes/new')
         .send({
@@ -213,7 +213,7 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         
     })
 
-    it.skip('Editar uma anotação que contenha caracteres especiais', async ()=>{
+    it('Editar uma anotação que contenha caracteres especiais', async ()=>{
 
         await request(app)
         .post('/admin/anotacoes/edit')
