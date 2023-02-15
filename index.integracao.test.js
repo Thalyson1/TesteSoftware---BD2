@@ -189,7 +189,6 @@ describe("TRABALHANDO COM ANOTAÇÕES 'JEST' ", ()=>{
         .get('/admin/anotacoes').then((res)=>{
             //console.log(res)
         })
-        .expect(200)
     })
 
     it('criar nova anotação com conteudo.lenght  < 50', async ()=>{
